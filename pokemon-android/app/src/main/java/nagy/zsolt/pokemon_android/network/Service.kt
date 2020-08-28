@@ -2,11 +2,13 @@ package nagy.zsolt.pokemon_android.network
 
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
+import nagy.zsolt.pokemon_android.network.model.PokemonInfoModel
 import nagy.zsolt.pokemon_android.network.model.PokemonListModel
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -19,6 +21,11 @@ interface Service {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): Observable<PokemonListModel.Result>
+
+    @GET("pokemon/{name}")
+    fun getPokemonInfo(
+        @Path("name") pokemonName: String
+    ): Observable<PokemonInfoModel.Result>
 
     companion object {
         /**

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">pokemon</string>
     <string name="i_choose_you">I choose you!</string>
+    <string name="weight">Weight: %1$d</string>
+    <string name="height">Height: %1$d</string>
+    <string name="visible_abilities">Visible abilities</string>
 </resources>

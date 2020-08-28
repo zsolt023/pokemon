@@ -2,6 +2,7 @@ package nagy.zsolt.pokemon_android.di
 
 import android.content.pm.PackageManager
 import nagy.zsolt.pokemon_android.network.Service
+import nagy.zsolt.pokemon_android.ui.info.PokemonInfoVM
 import nagy.zsolt.pokemon_android.ui.list.PokemonListVM
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -9,6 +10,7 @@ import org.koin.dsl.module
 
 val VMModule = module {
     viewModel { PokemonListVM(get()) }
+    viewModel { PokemonInfoVM(get()) }
 }
 
 val AppModule = module {

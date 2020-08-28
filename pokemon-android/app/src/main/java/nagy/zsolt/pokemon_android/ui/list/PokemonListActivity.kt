@@ -1,5 +1,6 @@
 package nagy.zsolt.pokemon_android.ui.list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pokemon_list.*
 import nagy.zsolt.pokemon_android.R
 import nagy.zsolt.pokemon_android.data.Pokemon
+import nagy.zsolt.pokemon_android.ui.info.PokemonInfoActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -17,11 +19,15 @@ class PokemonListActivity : AppCompatActivity() {
     private val viewModel by viewModel<PokemonListVM>()
     private val disposables = CompositeDisposable()
     private val pokemonList = mutableListOf<Pokemon>()
-    private val adapter = PokemonAdapter(pokemonList, {
-        // TODO: pokemon chosen, navigate to next page
-    }, {
-        viewModel.downloadNextPage()
-    })
+    private val adapter = PokemonAdapter(pokemonList,
+        { pokemon ->
+            val newIntent = Intent(this, PokemonInfoActivity::class.java)
+            newIntent.putExtra(PokemonInfoActivity.INTENT_KEY_POKEMON_NAME, pokemon.name)
+            startActivity(newIntent)
+        }, {
+            viewModel.downloadNextPage()
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
