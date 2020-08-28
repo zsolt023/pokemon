@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">pokemon-android</string>
+    <string name="app_name">pokemon</string>
+    <string name="i_choose_you">I choose you!</string>
 </resources>
